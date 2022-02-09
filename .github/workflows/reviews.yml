@@ -13,5 +13,6 @@ jobs:
     steps:
       - uses: actions/github-script@v5
         with:
+          result-encoding: string
           script: |
             console.log(context.payload.action.workflow_run)
