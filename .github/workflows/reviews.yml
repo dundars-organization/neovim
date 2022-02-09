@@ -14,4 +14,4 @@ jobs:
       - uses: actions/github-script@v5
         with:
           script: |
-            console.log(context.payload)
+            console.log(context.payload.action)
