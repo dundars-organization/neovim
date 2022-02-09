@@ -14,11 +14,4 @@ jobs:
       - uses: actions/github-script@v5
         with:
           script: |
-            const reviewers = []
-
-            const { data: { labels } } = await github.rest.pulls.get({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: context.event.workflow_run.pull_requests.number
-            })
-            const label_names = labels.map(label => label.name)
+            console.log(context.payload)
