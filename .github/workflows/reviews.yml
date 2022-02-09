@@ -1,0 +1,44 @@
+name: "Request reviews"
+on:
+  pull_request_target:
+    types: [labeled]
+  workflow_run:
+    workflows: [Pull Request Labeler]
+    types: [completed]
+jobs:
+  request-reviewer:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - uses: actions/github-script@v5
+        with:
+          script: |
+            const reviewers = []
+
+            const { data: { labels } } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number
+            })
+            const label_names = labels.map(label => label.name)
+
+            if (label_names.includes('ci')) {
+              reviewers.push("jamessan")
+            }
+
+            if (label_names.includes('vim-patch')) {
+              reviewers.push("seandewar")
+            }
+
+            const index = reviewers.indexOf(context.actor);
+            if (index > -1) {
+              reviewers.splice(index, 1);
+            }
+
+            github.rest.pulls.requestReviewers({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+              reviewers: reviewers
+            });
