@@ -22,23 +22,3 @@ jobs:
               pull_number: context.issue.number
             })
             const label_names = labels.map(label => label.name)
-
-            if (label_names.includes('ci')) {
-              reviewers.push("jamessan")
-            }
-
-            if (label_names.includes('vim-patch')) {
-              reviewers.push("seandewar")
-            }
-
-            const index = reviewers.indexOf(context.actor);
-            if (index > -1) {
-              reviewers.splice(index, 1);
-            }
-
-            github.rest.pulls.requestReviewers({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: context.issue.number,
-              reviewers: reviewers
-            });
