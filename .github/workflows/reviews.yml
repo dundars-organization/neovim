@@ -11,6 +11,7 @@ jobs:
     permissions:
       pull-requests: write
     steps:
+      - run: echo $GITHUB_EVENT_NAME	
       - uses: actions/github-script@v5
         with:
           script: |
