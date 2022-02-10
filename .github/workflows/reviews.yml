@@ -26,7 +26,7 @@ jobs:
             })
             const labels = pr_data.data.labels.map(e => e.name)
 
-            #const reviewers = new Set(pr_data.data.requested_reviewers.map(r => r.login))
+            // const reviewers = new Set(pr_data.data.requested_reviewers.map(r => r.login))
             const reviewers = new Set()
             if (labels.includes('api')) {
               reviewers.add("bfredl")
