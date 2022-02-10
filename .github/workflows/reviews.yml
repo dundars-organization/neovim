@@ -21,12 +21,12 @@ jobs:
             // context, otherwise the number will be stored in the payload.
             const pr_number = context.issue.number || context.payload.workflow_run.pull_requests[0].number
 
-            const data = await github.rest.pulls.get({
+            const return_data = await github.rest.pulls.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: pr_number
             })
-            console.log(data)
+            console.log(return_data.data)
 
             //const { data: { labels } } = await github.rest.pulls.get({
             //  owner: context.repo.owner,
