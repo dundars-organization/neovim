@@ -14,8 +14,6 @@ jobs:
       - uses: actions/github-script@v5
         with:
           script: |
-            const reviewers = []
-
             // The number of the pull request that triggered this run. If label
             // was added manually by a person the number will be stored in current
             // context, otherwise the number will be stored in the payload.
@@ -28,6 +26,7 @@ jobs:
             })
             const labels = pr_data.data.labels.map(e => e.name)
 
+            const reviewers = new Set(pr_data.data.reviewers.map(r => r.login))
             if (labels.includes('api')) {
               reviewers.push("bfredl")
               reviewers.push("gpanders")
@@ -90,14 +89,11 @@ jobs:
 
             // Remove person that opened the PR since they can't review themselves
             const pr_opener = pr_data.data.user.login
-            const index = reviewers.indexOf(pr_opener)
-            if (index > -1) {
-              reviewers.splice(index, 1)
-            }
+            reviewers.delete(pr_opener)
 
             github.rest.pulls.requestReviewers({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: pr_number,
-              reviewers: reviewers
+              reviewers: Array.from(reviewers)
             });
