@@ -21,75 +21,70 @@ jobs:
             // context, otherwise the number will be stored in the payload.
             const pr_number = context.issue.number || context.payload.workflow_run.pull_requests[0].number
 
-            const return_data = await github.rest.pulls.get({
+            const pr_data = await github.rest.pulls.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: pr_number
             })
-            console.log(return_data.data.labels.map(e => e.name))
+            const labels = pr_data.data.labels.map(e => e.name)
 
-            //const { data: { labels } } = await github.rest.pulls.get({
-            //  owner: context.repo.owner,
-            //  repo: context.repo.repo,
-            //  pull_number: pr_number
-            //})
-            //const label_names = labels.map(label => label.name)
+            console.log(pr_data)
 
-            //if (label_names.includes('api')) {
+            //if (labels.includes('api')) {
             //  reviewers.push("bfredl")
             //  reviewers.push("gpanders")
             //  reviewers.push("muniter")
             //}
 
-            //if (label_names.includes('ci')) {
+            //if (labels.includes('ci')) {
             //  reviewers.push("jamessan")
             //}
 
-            //if (label_names.includes('diagnostic')) {
+            //if (labels.includes('diagnostic')) {
             //  reviewers.push("gpanders")
             //}
 
-            //if (label_names.includes('distribution')) {
+            //if (labels.includes('distribution')) {
             //  reviewers.push("jamessan")
             //}
 
-            //if (label_names.includes('documentation')) {
+            //if (labels.includes('documentation')) {
             //  reviewers.push("clason")
             //}
 
-            //if (label_names.includes('extmarks')) {
+            //if (labels.includes('extmarks')) {
             //  reviewers.push("bfredl")
             //}
 
-            //if (label_names.includes('filetype')) {
+            //if (labels.includes('filetype')) {
             //  reviewers.push("clason")
             //  reviewers.push("gpanders")
             //}
 
-            //if (label_names.includes('gui')) {
+            //if (labels.includes('gui')) {
             //  reviewers.push("glacambre")
             //  reviewers.push("smolck")
             //}
 
-            //if (label_names.includes('lsp')) {
+            //if (labels.includes('lsp')) {
             //  reviewers.push("mfussenegger")
             //  reviewers.push("mjlbach")
             //}
 
-            //if (label_names.includes('treesitter')) {
+            //if (labels.includes('treesitter')) {
             //  reviewers.push("bfredl")
             //  reviewers.push("vigoux")
             //}
 
-            //if (label_names.includes('typo')) {
+            //if (labels.includes('typo')) {
             //  reviewers.push("dundargoc")
             //}
 
-            //if (label_names.includes('ui')) {
+            //if (labels.includes('ui')) {
             //  reviewers.push("bfredl")
             //}
 
-            //if (label_names.includes('vim-patch')) {
+            //if (labels.includes('vim-patch')) {
             //  reviewers.push("janlazo")
             //  reviewers.push("seandewar")
             //  reviewers.push("zeertzjq")
