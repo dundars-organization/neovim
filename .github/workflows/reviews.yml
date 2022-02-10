@@ -26,6 +26,7 @@ jobs:
             })
             const labels = pr_data.data.labels.map(e => e.name)
 
+            console.log(pr_data)
             const reviewers = new Set(pr_data.data.reviewers.map(r => r.login))
             if (labels.includes('api')) {
               reviewers.push("bfredl")
