@@ -26,66 +26,65 @@ jobs:
             })
             const labels = pr_data.data.labels.map(e => e.name)
 
-            console.log(pr_data.data.requested_reviewers.map(r => r.login))
             const reviewers = new Set(pr_data.data.requested_reviewers.map(r => r.login))
             if (labels.includes('api')) {
-              reviewers.push("bfredl")
-              reviewers.push("gpanders")
-              reviewers.push("muniter")
+              reviewers.add("bfredl")
+              reviewers.add("gpanders")
+              reviewers.add("muniter")
             }
 
             if (labels.includes('ci')) {
-              reviewers.push("jamessan")
+              reviewers.add("jamessan")
             }
 
             if (labels.includes('diagnostic')) {
-              reviewers.push("gpanders")
+              reviewers.add("gpanders")
             }
 
             if (labels.includes('distribution')) {
-              reviewers.push("jamessan")
+              reviewers.add("jamessan")
             }
 
             if (labels.includes('documentation')) {
-              reviewers.push("clason")
+              reviewers.add("clason")
             }
 
             if (labels.includes('extmarks')) {
-              reviewers.push("bfredl")
+              reviewers.add("bfredl")
             }
 
             if (labels.includes('filetype')) {
-              reviewers.push("clason")
-              reviewers.push("gpanders")
+              reviewers.add("clason")
+              reviewers.add("gpanders")
             }
 
             if (labels.includes('gui')) {
-              reviewers.push("glacambre")
-              reviewers.push("smolck")
+              reviewers.add("glacambre")
+              reviewers.add("smolck")
             }
 
             if (labels.includes('lsp')) {
-              reviewers.push("mfussenegger")
-              reviewers.push("mjlbach")
+              reviewers.add("mfussenegger")
+              reviewers.add("mjlbach")
             }
 
             if (labels.includes('treesitter')) {
-              reviewers.push("bfredl")
-              reviewers.push("vigoux")
+              reviewers.add("bfredl")
+              reviewers.add("vigoux")
             }
 
             if (labels.includes('typo')) {
-              reviewers.push("dundargoc")
+              reviewers.add("dundargoc")
             }
 
             if (labels.includes('ui')) {
-              reviewers.push("bfredl")
+              reviewers.add("bfredl")
             }
 
             if (labels.includes('vim-patch')) {
-              reviewers.push("janlazo")
-              reviewers.push("seandewar")
-              reviewers.push("zeertzjq")
+              reviewers.add("janlazo")
+              reviewers.add("seandewar")
+              reviewers.add("zeertzjq")
             }
 
             // Remove person that opened the PR since they can't review themselves
