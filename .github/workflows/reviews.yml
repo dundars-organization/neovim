@@ -28,80 +28,76 @@ jobs:
             })
             const labels = pr_data.data.labels.map(e => e.name)
 
+            if (labels.includes('api')) {
+              reviewers.push("bfredl")
+              reviewers.push("gpanders")
+              reviewers.push("muniter")
+            }
+
+            if (labels.includes('ci')) {
+              reviewers.push("jamessan")
+            }
+
+            if (labels.includes('diagnostic')) {
+              reviewers.push("gpanders")
+            }
+
+            if (labels.includes('distribution')) {
+              reviewers.push("jamessan")
+            }
+
+            if (labels.includes('documentation')) {
+              reviewers.push("clason")
+            }
+
+            if (labels.includes('extmarks')) {
+              reviewers.push("bfredl")
+            }
+
+            if (labels.includes('filetype')) {
+              reviewers.push("clason")
+              reviewers.push("gpanders")
+            }
+
+            if (labels.includes('gui')) {
+              reviewers.push("glacambre")
+              reviewers.push("smolck")
+            }
+
+            if (labels.includes('lsp')) {
+              reviewers.push("mfussenegger")
+              reviewers.push("mjlbach")
+            }
+
+            if (labels.includes('treesitter')) {
+              reviewers.push("bfredl")
+              reviewers.push("vigoux")
+            }
+
+            if (labels.includes('typo')) {
+              reviewers.push("dundargoc")
+            }
+
+            if (labels.includes('ui')) {
+              reviewers.push("bfredl")
+            }
+
+            if (labels.includes('vim-patch')) {
+              reviewers.push("janlazo")
+              reviewers.push("seandewar")
+              reviewers.push("zeertzjq")
+            }
+
+            // Remove person that opened the PR since they can't review themselves
             const pr_opener = pr_data.data.user.login
+            const index = reviewers.indexOf(pr_opener)
+            if (index > -1) {
+              reviewers.splice(index, 1)
+            }
 
-            console.log(pr_opener)
-
-            //if (labels.includes('api')) {
-            //  reviewers.push("bfredl")
-            //  reviewers.push("gpanders")
-            //  reviewers.push("muniter")
-            //}
-
-            //if (labels.includes('ci')) {
-            //  reviewers.push("jamessan")
-            //}
-
-            //if (labels.includes('diagnostic')) {
-            //  reviewers.push("gpanders")
-            //}
-
-            //if (labels.includes('distribution')) {
-            //  reviewers.push("jamessan")
-            //}
-
-            //if (labels.includes('documentation')) {
-            //  reviewers.push("clason")
-            //}
-
-            //if (labels.includes('extmarks')) {
-            //  reviewers.push("bfredl")
-            //}
-
-            //if (labels.includes('filetype')) {
-            //  reviewers.push("clason")
-            //  reviewers.push("gpanders")
-            //}
-
-            //if (labels.includes('gui')) {
-            //  reviewers.push("glacambre")
-            //  reviewers.push("smolck")
-            //}
-
-            //if (labels.includes('lsp')) {
-            //  reviewers.push("mfussenegger")
-            //  reviewers.push("mjlbach")
-            //}
-
-            //if (labels.includes('treesitter')) {
-            //  reviewers.push("bfredl")
-            //  reviewers.push("vigoux")
-            //}
-
-            //if (labels.includes('typo')) {
-            //  reviewers.push("dundargoc")
-            //}
-
-            //if (labels.includes('ui')) {
-            //  reviewers.push("bfredl")
-            //}
-
-            //if (labels.includes('vim-patch')) {
-            //  reviewers.push("janlazo")
-            //  reviewers.push("seandewar")
-            //  reviewers.push("zeertzjq")
-            //}
-
-            //// Remove actor, that is the person opening the pull request since
-            //// they can't review themselves.
-            //const index = reviewers.indexOf(context.actor);
-            //if (index > -1) {
-            //  reviewers.splice(index, 1);
-            //}
-
-            //github.rest.pulls.requestReviewers({
-            //  owner: context.repo.owner,
-            //  repo: context.repo.repo,
-            //  pull_number: pr_number,
-            //  reviewers: reviewers
-            //});
+            github.rest.pulls.requestReviewers({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pr_number,
+              reviewers: reviewers
+            });
