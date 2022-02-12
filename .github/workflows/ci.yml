@@ -121,8 +121,22 @@ jobs:
       - name: Build third-party
         run: ./ci/before_script.sh
 
-      - name: Build and test
-        run: ./ci/script.sh
+      - name: Build
+        run: ./ci/run_tests.sh build
+
+      - if: matrix.flavor != 'tsan'
+        name: Unittests
+        run: ./ci/run_tests.sh unittests
+
+      - if: matrix.flavor != 'tsan'
+        name: Functionaltests
+        run: ./ci/run_tests.sh functionaltests
+
+      - name: Oldtests
+        run: ./ci/run_tests.sh oldtests
+
+      - name: Install nvim
+        run: ./ci/run_tests.sh install_nvim
 
       - name: Cache dependencies
         if: ${{ success() }}
