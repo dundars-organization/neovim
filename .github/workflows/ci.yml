@@ -121,8 +121,10 @@ jobs:
       - name: Build third-party
         run: ./ci/before_script.sh
 
-      - name: Build and test
-        run: ./ci/script.sh
+      - name: Build
+        run: ./ci/run_tests.sh build
+          #      - name: Build and test
+          #        run: ./ci/script.sh
 
       - name: Cache dependencies
         if: ${{ success() }}
