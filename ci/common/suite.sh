@@ -37,11 +37,11 @@ enter_suite() {
 }
 
 exit_suite() {
+  ci_fold "end" ""
+
   if test $FAILED -ne 0 ; then
     echo "Suite ${NVIM_TEST_CURRENT_SUITE} failed, summary:"
     echo "${FAIL_SUMMARY}"
-  else
-    ci_fold "end" ""
   fi
   export NVIM_TEST_CURRENT_SUITE="${NVIM_TEST_CURRENT_SUITE%/*}"
   FAILED=0
