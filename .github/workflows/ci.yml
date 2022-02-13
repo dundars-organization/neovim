@@ -121,11 +121,30 @@ jobs:
       - name: Build third-party
         run: ./ci/before_script.sh
 
-      - name: Build and test
-        run: ./ci/script.sh
+      - name: Build
+        run: ./ci/run_tests.sh build
+
+      - if: matrix.flavor != 'tsan' && ( success() && failure() )
+        id: unittests
+        name: Unittests
+        run: ./ci/run_tests.sh unittests
+
+      - if: matrix.flavor != 'tsan' && ( success() || failure() )
+        id: functionaltests
+        name: Functionaltests
+        run: ./ci/run_tests.sh functionaltests
+
+      - if: success() || failure()
+        id: oldtests
+        name: Oldtests
+        run: ./ci/run_tests.sh oldtests
+
+      - if: success() || failure()
+        id: install_nvim
+        name: Install nvim
+        run: ./ci/run_tests.sh install_nvim
 
       - name: Cache dependencies
-        if: ${{ success() }}
         run: ./ci/before_cache.sh
 
   windows:
@@ -211,8 +230,20 @@ jobs:
       - name: Build third-party
         run: ./ci/before_script.sh
 
-      - name: Build and test
-        run: ./ci/script.sh
+      - name: Build
+        run: ./ci/run_tests.sh build
+
+      - if: matrix.flavor != 'tsan'
+        name: Functionaltests
+        run: ./ci/run_tests.sh functionaltests
+        continue-on-error: true
+
+      - name: Oldtests
+        run: ./ci/run_tests.sh oldtests
+        continue-on-error: true
+
+      - name: Install nvim
+        run: ./ci/run_tests.sh install_nvim
 
       - name: Cache dependencies
         if: ${{ success() }}
