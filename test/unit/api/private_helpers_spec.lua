@@ -32,7 +32,7 @@ describe('vim_to_object', function()
   end
 
   local simple_test = function(name, l)
-    different_output_test(name, l, l)
+    different_output_test(name, nil, l)
   end
 
   simple_test('converts true', true)

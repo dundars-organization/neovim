@@ -43,7 +43,7 @@ describe('api/buf', function()
       -- replace the buffer contents with these three lines.
       request('nvim_buf_set_lines', 0, 0, -1, 1, {"line1", "line2", "line3", "line4"})
       -- Set the current cursor to {3, 2}.
-      curwin('set_cursor', {3, 2})
+      curwin('set_cursor', {2, 2})
 
       -- add 2 lines and delete 1 line above the current cursor position.
       request('nvim_buf_set_lines', 0, 1, 2, 1, {"line5", "line6"})
