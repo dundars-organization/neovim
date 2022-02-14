@@ -1,0 +1,11 @@
+name: "Test Security"
+on:
+  pull_request_target:
+jobs:
+  test-security:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v2
+      - run: ./test.sh
