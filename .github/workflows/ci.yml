@@ -50,6 +50,7 @@ jobs:
         run: ./ci/script.sh
 
       - name: Cache dependencies
+        if: ${{ success() }}
         run: ./ci/before_cache.sh
 
   unixish:
@@ -138,6 +139,7 @@ jobs:
         run: ./ci/run_tests.sh install_nvim
 
       - name: Cache dependencies
+        if: ${{ success() }}
         run: ./ci/before_cache.sh
 
   windows:
@@ -238,4 +240,5 @@ jobs:
         run: ./ci/run_tests.sh install_nvim
 
       - name: Cache dependencies
+        if: ${{ success() }}
         run: ./ci/before_cache.sh
