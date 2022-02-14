@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo "This is from the base branch."
+echo "This is from the head branch."
