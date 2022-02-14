@@ -121,19 +121,19 @@ jobs:
       - name: Build
         run: ./ci/run_tests.sh build
 
-      - if: matrix.flavor != 'tsan' && ( success() || failure() )
+      - if: matrix.flavor != 'tsan' && ${{ !cancelled() }}
         name: Unittests
         run: ./ci/run_tests.sh unittests
 
-      - if: matrix.flavor != 'tsan' && ( success() || failure() )
+      - if: matrix.flavor != 'tsan' && ${{ !cancelled() }}
         name: Functionaltests
         run: ./ci/run_tests.sh functionaltests
 
-      - if: success() || failure()
+      - if: ${{ !cancelled() }}
         name: Oldtests
         run: ./ci/run_tests.sh oldtests
 
-      - if: success() || failure()
+      - if: ${{ !cancelled() }}
         name: Install nvim
         run: ./ci/run_tests.sh install_nvim
 
@@ -225,15 +225,15 @@ jobs:
       - name: Build
         run: ./ci/run_tests.sh build
 
-      - if: matrix.flavor != 'tsan' && ( success() || failure() )
+      - if: matrix.flavor != 'tsan' && ${{ !cancelled() }}
         name: Functionaltests
         run: ./ci/run_tests.sh functionaltests
 
-      - if: success() || failure()
+      - if: ${{ !cancelled() }}
         name: Oldtests
         run: ./ci/run_tests.sh oldtests
 
-      - if: success() || failure()
+      - if: ${{ !cancelled() }}
         name: Install nvim
         run: ./ci/run_tests.sh install_nvim
 
