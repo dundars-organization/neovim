@@ -46,8 +46,25 @@ jobs:
       - name: Build third-party
         run: ./ci/before_script.sh
 
-      - name: Run lint
-        run: ./ci/script.sh
+      - if: ${{ !cancelled() }}
+        name: clint
+        run: ./ci/run_lint.sh clint
+
+      - if: ${{ !cancelled() }}
+        name: lualint
+        run: ./ci/run_lint.sh lualint
+
+      - if: ${{ !cancelled() }}
+        name: pylint
+        run: ./ci/run_lint.sh pylint
+
+      - if: ${{ !cancelled() }}
+        name: shlint
+        run: ./ci/run_lint.sh shlint
+
+      - if: ${{ !cancelled() }}
+        name: single-includes
+        run: ./ci/run_lint.sh single-includes
 
       - name: Cache dependencies
         if: ${{ success() }}
