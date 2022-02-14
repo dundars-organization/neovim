@@ -33,8 +33,7 @@ jobs:
           sudo apt-get install -y autoconf automake build-essential ccache cmake cpanminus gettext gperf language-pack-tr libtool-bin locales ninja-build pkg-config python3 python3-pip python3-setuptools unzip flake8
 
       - name: Setup interpreter packages
-        run: |
-          ./ci/install.sh
+        run: ./ci/install.sh
 
       - name: Cache dependencies
         uses: actions/cache@v2
@@ -51,7 +50,6 @@ jobs:
         run: ./ci/script.sh
 
       - name: Cache dependencies
-        if: ${{ success() }}
         run: ./ci/before_cache.sh
 
   unixish:
@@ -107,8 +105,7 @@ jobs:
           brew install automake ccache perl cpanminus ninja
 
       - name: Setup interpreter packages
-        run: |
-          ./ci/install.sh
+        run: ./ci/install.sh
 
       - name: Cache dependencies
         uses: actions/cache@v2
@@ -121,11 +118,26 @@ jobs:
       - name: Build third-party
         run: ./ci/before_script.sh
 
-      - name: Build and test
-        run: ./ci/script.sh
+      - name: Build
+        run: ./ci/run_tests.sh build
+
+      - if: matrix.flavor != 'tsan' && ( success() || failure() )
+        name: Unittests
+        run: ./ci/run_tests.sh unittests
+
+      - if: matrix.flavor != 'tsan' && ( success() || failure() )
+        name: Functionaltests
+        run: ./ci/run_tests.sh functionaltests
+
+      - if: success() || failure()
+        name: Oldtests
+        run: ./ci/run_tests.sh oldtests
+
+      - if: success() || failure()
+        name: Install nvim
+        run: ./ci/run_tests.sh install_nvim
 
       - name: Cache dependencies
-        if: ${{ success() }}
         run: ./ci/before_cache.sh
 
   windows:
@@ -197,8 +209,7 @@ jobs:
           }
 
       - name: Setup interpreter packages
-        run: |
-          ./ci/install.sh
+        run: ./ci/install.sh
 
       - name: Cache dependencies
         uses: actions/cache@v2
@@ -211,9 +222,20 @@ jobs:
       - name: Build third-party
         run: ./ci/before_script.sh
 
-      - name: Build and test
-        run: ./ci/script.sh
+      - name: Build
+        run: ./ci/run_tests.sh build
+
+      - if: matrix.flavor != 'tsan' && ( success() || failure() )
+        name: Functionaltests
+        run: ./ci/run_tests.sh functionaltests
+
+      - if: success() || failure()
+        name: Oldtests
+        run: ./ci/run_tests.sh oldtests
+
+      - if: success() || failure()
+        name: Install nvim
+        run: ./ci/run_tests.sh install_nvim
 
       - name: Cache dependencies
-        if: ${{ success() }}
         run: ./ci/before_cache.sh
