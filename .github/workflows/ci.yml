@@ -162,10 +162,12 @@ jobs:
       - name: Build
         run: ./ci/run_tests.sh build
 
-      - if: matrix.flavor != 'tsan' && matrix.flavor != 'functionaltest-lua' && ${{ !cancelled() }}
+      - if: ${{ matrix.flavor != 'tsan' }} && ${{ matrix.flavor != 'functionaltest-lua' }} && ${{ !cancelled() }}
         name: Unittests
         run: |
-          echo ${{ matrix.flavor }}
+          echo ${{ matrix.flavor != 'functionaltest-lua' }}
+          echo ${{ matrix.flavor != 'tsan' }}
+          echo ${{ !cancelled() }}
           ./ci/run_tests.sh unittests
 
       - if: matrix.flavor != 'tsan' && ${{ !cancelled() }}
