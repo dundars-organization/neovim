@@ -50,7 +50,7 @@ jobs:
         name: clint
         run: ./ci/run_lint.sh clint
 
-      - if: ${{ !cancelled() }}
+      - if: ${{ !success() }}
         name: lualint
         run: ./ci/run_lint.sh lualint
 
