@@ -164,7 +164,9 @@ jobs:
 
       - if: matrix.flavor != 'tsan' && matrix.flavor != 'functionaltest-lua' && ${{ !cancelled() }}
         name: Unittests
-        run: ./ci/run_tests.sh unittests
+        run: |
+          echo ${{ matrix.flavor }}
+          ./ci/run_tests.sh unittests
 
       - if: matrix.flavor != 'tsan' && ${{ !cancelled() }}
         name: Functionaltests
