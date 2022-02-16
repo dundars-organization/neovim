@@ -46,7 +46,7 @@ jobs:
       - name: Build third-party
         run: ./ci/before_script.sh
 
-      - if: ${{ !cancelled() }}
+      - if: cancelled() == false
         name: clint
         run: ./ci/run_lint.sh clint
 
