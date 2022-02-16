@@ -36,17 +36,6 @@ jobs:
         run: |
           ./ci/install.sh
 
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: |
-            ${{ env.CACHE_NVIM_DEPS_DIR }}
-            ~/.ccache
-          key: ${{ matrix.runner }}-lint-${{ matrix.cc }}-${{ hashFiles('cmake/*', 'third-party/**', '**/CMakeLists.txt') }}-${{ github.base_ref }}
-
-      - name: Build third-party
-        run: ./ci/before_script.sh
-
       - name: Run lint
         run: ./ci/script.sh
 
