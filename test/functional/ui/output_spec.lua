@@ -35,6 +35,9 @@ describe("shell command :!", function()
   end)
 
   it("displays output without LF/EOF. #4646 #4569 #3772", function()
+    if iswin() and helpers.isCi('github') then
+      pending('Fails on Windows for GitHub CI.')
+    end
     if helpers.pending_win32(pending) then return end
     -- NOTE: We use a child nvim (within a :term buffer)
     --       to avoid triggering a UI flush.
@@ -51,6 +54,9 @@ describe("shell command :!", function()
   end)
 
   it("throttles shell-command output greater than ~10KB", function()
+    if iswin() and helpers.isCi('github') then
+      pending('Fails on Windows for GitHub CI.')
+    end
     if 'openbsd' == helpers.uname() then
       pending('FIXME #10804')
     end
