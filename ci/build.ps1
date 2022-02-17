@@ -149,7 +149,7 @@ if (-not $NoTests) {
   $failed = $false
 
   # Run only this test file:
-  # $env:TEST_FILE = "test\functional\foo.lua"
+  $env:TEST_FILE = "test/functional/ui/output_spec.lua"
   cmake --build . --config $cmakeBuildType --target functionaltest -- $cmakeGeneratorArgs 2>&1 |
     foreach { $failed = $failed -or
       $_ -match 'functional tests failed with error'; $_ }
