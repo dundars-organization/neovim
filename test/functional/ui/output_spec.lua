@@ -16,6 +16,9 @@ local set_shell_powershell = helpers.set_shell_powershell
 describe("shell command :!", function()
   local screen
   before_each(function()
+    if iswin() and helpers.isCi('github') then
+      pending('Fails on Windows for GitHub CI.')
+    end
     clear()
     screen = child_session.screen_setup(0, '["'..helpers.nvim_prog..
       '", "-u", "NONE", "-i", "NONE", "--cmd", "'..helpers.nvim_set..'"]')
