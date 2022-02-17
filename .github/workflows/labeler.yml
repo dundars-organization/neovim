@@ -43,5 +43,5 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const script = require('./ci/reviews.js')
+            const script = require('ci/reviews.js')
             await script({github, context})
