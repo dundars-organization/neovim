@@ -3154,3 +3154,4 @@ nvim_ui_try_resize_grid({grid}, {width}, {height})
                     {height}  The new requested height.
 
  vim:tw=78:ts=8:ft=help:norl:
+Appended text.
