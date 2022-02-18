@@ -1619,3 +1619,4 @@ function M.match(name, bufnr)
 end
 
 return M
+Appended text.
