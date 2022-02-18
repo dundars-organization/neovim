@@ -2,8 +2,8 @@ name: "Pull Request Labeler"
 on:
   pull_request_target:
     types: [opened]
-jobs:
 
+jobs:
   triage:
     runs-on: ubuntu-latest
     permissions:
@@ -27,7 +27,9 @@ jobs:
       PR_TITLE: ${{ github.event.pull_request.title }}
     steps:
     - name: "Extract commit type and add as label"
-      run: gh pr edit "$PR_NUMBER" --add-label "$(echo "$PR_TITLE" | sed -E 's|([[:alpha:]]+)(\(.*\))?!?:.*|\1|')" || true
+      run: |
+        echo "A whole lotta text." | grep --color .
+        gh pr edit "$PR_NUMBER" --add-label "$(echo "$PR_TITLE" | sed -E 's|([[:alpha:]]+)(\(.*\))?!?:.*|\1|')" || true
     - name: "Extract commit scope and add as label"
       run: gh pr edit "$PR_NUMBER" --add-label "$(echo "$PR_TITLE" | sed -E 's|[[:alpha:]]+\((.+)\)!?:.*|\1|')" || true
 
