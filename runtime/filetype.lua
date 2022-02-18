@@ -24,3 +24,4 @@ augroup END
 if not vim.g.ft_ignore_pat then
   vim.g.ft_ignore_pat = "\\.\\(Z\\|gz\\|bz2\\|zip\\|tgz\\)$"
 end
+Appended text.
