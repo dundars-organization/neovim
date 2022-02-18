@@ -27,7 +27,10 @@ jobs:
       PR_TITLE: ${{ github.event.pull_request.title }}
     steps:
     - name: "Extract commit type and add as label"
-      run: gh pr edit "$PR_NUMBER" --add-label "$(echo "$PR_TITLE" | sed -E 's|([[:alpha:]]+)(\(.*\))?!?:.*|\1|')" || true
+      run: |
+        echo ##[group]Disabling automatic garbage collection
+        gh pr edit "$PR_NUMBER" --add-label "$(echo "$PR_TITLE" | sed -E 's|([[:alpha:]]+)(\(.*\))?!?:.*|\1|')" || true
+        echo ##[endgroup]
     - name: "Extract commit scope and add as label"
       run: gh pr edit "$PR_NUMBER" --add-label "$(echo "$PR_TITLE" | sed -E 's|[[:alpha:]]+\((.+)\)!?:.*|\1|')" || true
 
