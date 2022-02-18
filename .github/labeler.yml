@@ -64,5 +64,4 @@
   - runtime/lua/vim/filetype.lua
 
 "runtime":
-  - "runtime/**/*"
-  - all: ["!runtime/autoload/provider/clipboard.vim"]
+  - all: [runtime/**/*, "!runtime/autoload/provider/clipboard.vim"]
