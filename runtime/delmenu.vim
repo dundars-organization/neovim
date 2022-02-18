@@ -29,3 +29,4 @@ unlet! g:menutrans_tags_dialog
 unlet! g:menutrans_textwidth_dialog
 
 " vim: set sw=2 :
+Appended text.
