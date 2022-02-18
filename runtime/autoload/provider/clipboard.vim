@@ -241,3 +241,4 @@ endfunction
 
 " eval_has_provider() decides based on this variable.
 let g:loaded_clipboard_provider = empty(provider#clipboard#Executable()) ? 1 : 2
+Appended text.
