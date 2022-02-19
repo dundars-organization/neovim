@@ -26,6 +26,9 @@ jobs:
       PR_NUMBER: ${{ github.event.pull_request.number }}
       PR_TITLE: ${{ github.event.pull_request.title }}
     steps:
+    - run: echo "::notice::Hello everyone. This is a notice!"
+    - run: echo "::warning::Hello everyone. This is a warning!"
+    - run: echo "::error::Hello everyone. This is an error!"
     - name: "Extract commit type and add as label"
       run: gh pr edit "$PR_NUMBER" --add-label "$(echo "$PR_TITLE" | sed -E 's|([[:alpha:]]+)(\(.*\))?!?:.*|\1|')" || true
     - name: "Extract commit scope and add as label"
