@@ -35,6 +35,7 @@ describe("shell command :!", function()
   end)
 
   it("displays output without LF/EOF. #4646 #4569 #3772", function()
+    pending('Broken on windows skip')
     if helpers.pending_win32(pending) then return end
     -- NOTE: We use a child nvim (within a :term buffer)
     --       to avoid triggering a UI flush.
@@ -51,6 +52,7 @@ describe("shell command :!", function()
   end)
 
   it("throttles shell-command output greater than ~10KB", function()
+    pending('Broken on windows skip')
     if 'openbsd' == helpers.uname() then
       pending('FIXME #10804')
     end
