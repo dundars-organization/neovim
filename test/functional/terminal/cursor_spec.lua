@@ -8,6 +8,7 @@ local eq, eval = helpers.eq, helpers.eval
 local feed_command = helpers.feed_command
 local hide_cursor = thelpers.hide_cursor
 local show_cursor = thelpers.show_cursor
+local iswin = helpers.iswin
 
 describe(':terminal cursor', function()
   local screen
@@ -176,6 +177,7 @@ describe('cursor with customized highlighting', function()
 end)
 
 describe('buffer cursor position is correct in terminal without number column', function()
+  if not iswin() then
   local screen
 
   local function setup_ex_register(str)
@@ -523,9 +525,11 @@ describe('buffer cursor position is correct in terminal without number column', 
       eq({6, 1}, eval('nvim_win_get_cursor(0)'))
     end)
   end)
+  end
 end)
 
 describe('buffer cursor position is correct in terminal with number column', function()
+  if not iswin() then
   local screen
 
   local function setup_ex_register(str)
@@ -876,4 +880,5 @@ describe('buffer cursor position is correct in terminal with number column', fun
       eq({6, 1}, eval('nvim_win_get_cursor(0)'))
     end)
   end)
+  end
 end)
