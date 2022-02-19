@@ -23,7 +23,7 @@ func Test_sort_strings()
   \            sort(['A', 'a', 'o', 'O', 'œ', 'Œ', 'p', 'P', 'Ä', 'ä', 'ô', 'Ô'], 'i'))
 
   " This does not appear to work correctly on Mac.
-  if !has('mac')
+  if !has('mac') && !has('win64')
     if v:collate =~? '^\(en\|fr\)_ca.utf-\?8$'
       " with Canadian English capitals come before lower case.
       " 'Œ' is omitted because it can sort before or after 'œ'
