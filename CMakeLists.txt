@@ -338,7 +338,7 @@ if(HAS_DIAG_COLOR_FLAG)
   endif()
 endif()
 
-option(CI_BUILD "CI, extra flags will be set" OFF)
+option(CI_BUILD "CI, extra flags will be set" ON)
 
 if(CI_BUILD)
   message(STATUS "CI build enabled")
