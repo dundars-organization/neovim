@@ -38,13 +38,12 @@ static uv_mutex_t mutex;
 
 static bool log_try_create(char *fname)
 {
-  if (fname == NULL || fname[0] == '\0') {
-    return false;
+  if ( fname == NULL || fname[0] == '\0') {
+    return false ;
   }
   FILE *log_file = fopen(fname, "a");
   if (log_file == NULL) {
-    return false;
-  }
+    return false; }
   fclose(log_file);
   return true;
 }
