@@ -93,6 +93,12 @@ jobs:
       - name: Cache dependencies
         run: ./ci/before_cache.sh
 
+      - if: failure()
+        name: Fail Summary
+        run: |
+          cat "$COMPLETE_FAIL_SUMMARY_FILE"
+          exit 1
+
   unixish:
     name: ${{ matrix.runner }} ${{ matrix.flavor }} (cc=${{ matrix.cc }})
     strategy:
@@ -203,6 +209,12 @@ jobs:
 
       - name: Cache dependencies
         run: ./ci/before_cache.sh
+
+      - if: failure()
+        name: Fail Summary
+        run: |
+          cat "$COMPLETE_FAIL_SUMMARY_FILE"
+          exit 1
 
   windows:
     runs-on: windows-2016
