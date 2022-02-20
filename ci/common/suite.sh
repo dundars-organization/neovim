@@ -44,11 +44,12 @@ fail() {
 
 ended_successfully() {
   if test -f "${FAIL_SUMMARY_FILE}" ; then
-    echo 'Test failed, complete summary:'
-    cat "${FAIL_SUMMARY_FILE}"
-
     if [[ "$GITHUB_ACTIONS" == "true" ]]; then
-        rm -f "$FAIL_SUMMARY_FILE"
+      cat "$FAIL_SUMMARY_FILE" >> "$COMPLETE_FAIL_SUMMARY_FILE"
+      rm -f "$FAIL_SUMMARY_FILE"
+    else
+      echo 'Test failed, complete summary:'
+      cat "${FAIL_SUMMARY_FILE}"
     fi
 
     return 1
