@@ -106,6 +106,7 @@ endif()
 option(ENABLE_LIBINTL "enable libintl" ON)
 option(ENABLE_LIBICONV "enable libiconv" ON)
 if (MINGW)
+  add_compile_options(-Wno-pedantic-ms-format)
   # Disable LTO by default as it may not compile
   # See https://github.com/Alexpux/MINGW-packages/issues/3516
   # and https://github.com/neovim/neovim/pull/8654#issuecomment-402316672
