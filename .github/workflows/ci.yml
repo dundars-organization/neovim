@@ -15,6 +15,36 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.head_ref || github.sha }}
   cancel-in-progress: true
 
+env:
+  APT: |
+    autoconf
+    automake
+    build-essential
+    ccache
+    cmake
+    flake8
+    gettext
+    gperf
+    libluajit-5.1-dev
+    libmsgpack-dev
+    libtermkey-dev
+    libtool-bin
+    libtree-sitter-dev
+    libunibilium-dev
+    libuv1-dev
+    libvterm-dev
+    locales
+    lua-busted
+    lua-check
+    lua-filesystem
+    lua-inspect
+    lua-lpeg
+    lua-luv-dev
+    lua-nvim
+    luajit
+    ninja-build
+    pkg-config
+
 jobs:
   lint:
     if: (github.event_name == 'pull_request' && github.base_ref == 'master' && !github.event.pull_request.draft) || (github.event_name == 'push' && github.ref == 'refs/heads/master')
@@ -31,34 +61,7 @@ jobs:
         run: |
           sudo add-apt-repository ppa:neovim-ppa/stable
           sudo apt-get update
-          sudo apt-get install -y \
-            autoconf \
-            automake \
-            build-essential \
-            ccache \
-            cmake \
-            flake8 \
-            gettext \
-            gperf \
-            libluajit-5.1-dev \
-            libmsgpack-dev \
-            libtermkey-dev \
-            libtool-bin \
-            libtree-sitter-dev \
-            libunibilium-dev \
-            libuv1-dev \
-            libvterm-dev \
-            locales \
-            lua-busted \
-            lua-check \
-            lua-filesystem \
-            lua-inspect \
-            lua-lpeg \
-            lua-luv-dev \
-            lua-nvim \
-            luajit \
-            ninja-build \
-            pkg-config
+          sudo apt-get install -y $APT
 
       - name: Cache artifacts
         uses: actions/cache@v2
