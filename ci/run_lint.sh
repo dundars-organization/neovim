@@ -19,7 +19,7 @@ if [[ "$GITHUB_ACTIONS" != "true" ]]; then
 else
   case "$1" in
     clint)
-      run_suite 'make clint-full' 'clint'
+      run_suite 'make clint-full' 'clint' 2>> "$GHA_FAIL_SUMMARY_FILE"
       ;;
     lualint)
       run_suite 'make lualint' 'lualint'
@@ -28,7 +28,7 @@ else
       run_suite 'make pylint' 'pylint'
       ;;
     shlint)
-      run_suite 'make shlint' 'shlint'
+      run_suite 'make shlint' 'shlint' 2>> "$GHA_FAIL_SUMMARY_FILE"
       ;;
     single-includes)
       run_suite 'make check-single-includes' 'single-includes'

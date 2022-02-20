@@ -800,8 +800,12 @@ def Error(filename, linenum, category, confidence, message):
             sys.stdout.write('%s:%s: warning: %s  [%s] [%d]\n' % (
                 filename, linenum, message, category, confidence))
         else:
-            sys.stdout.write('%s:%s:  %s  [%s] [%d]\n' % (
-                filename, linenum, message, category, confidence))
+            if "GITHUB_ACTIONS" in os.environ:
+                sys.stderr.write('%s:%s:  %s  [%s] [%d]\n' % (
+                    filename, linenum, message, category, confidence))
+            else:
+                sys.stdout.write('%s:%s:  %s  [%s] [%d]\n' % (
+                    filename, linenum, message, category, confidence))
 
 
 # Matches standard C++ escape sequences per 2.13.2.3 of the C++ standard.
