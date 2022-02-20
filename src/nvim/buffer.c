@@ -5610,8 +5610,7 @@ void wipe_buffer(buf_T *buf, bool aucmd)
 /// @param bufnr     Buffer to switch to, or 0 to create a new buffer.
 ///
 /// @see curbufIsChanged()
-void buf_open_scratch(handle_T bufnr, char *bufname)
-{
+void buf_open_scratch(handle_T bufnr, char *bufname) {
   (void)do_ecmd((int)bufnr, NULL, NULL, NULL, ECMD_ONE, ECMD_HIDE, NULL);
   (void)setfname(curbuf, (char_u *)bufname, NULL, true);
   set_option_value("bh", 0L, "hide", OPT_LOCAL);
