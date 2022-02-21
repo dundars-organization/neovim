@@ -1891,7 +1891,7 @@ nvim_buf_attach({buffer}, {send_buffer}, {opts})           *nvim_buf_attach()*
                                      • first line that changed (zero-indexed)
                                      • last line that was changed
                                      • last line in the updated range
-                                     • byte count of previous contents
+                                     • byte font of previous contents
                                      • deleted_codepoints (if `utf_sizes` is
                                        true)
                                      • deleted_codeunits (if `utf_sizes` is
