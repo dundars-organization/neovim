@@ -1,5 +1,6 @@
 " Vim support file to switch off detection of file types
 "
+"
 " Maintainer:	Bram Moolenaar <Bram@vim.org>
 " Last change:	2001 Jun 11
 
