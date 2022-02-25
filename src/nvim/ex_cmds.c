@@ -1553,7 +1553,7 @@ static char *find_pipe(const char *cmd)
 {
   bool inquote = false;
 
-  for (const char *p = cmd; *p != NUL; p++) {
+  for (char *p = (char *)cmd; *p != NUL; p++) {
     if (!inquote && *p == '|') {
       return p;
     }
