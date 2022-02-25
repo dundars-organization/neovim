@@ -76,6 +76,8 @@
 #include "nvim/vim.h"
 #include "nvim/window.h"
 #ifdef WIN32
+# include <Basetsd.h>
+
 # include "nvim/os/pty_conpty_win.h"
 #endif
 #include "nvim/api/private/helpers.h"
@@ -630,7 +632,7 @@ static void set_option_default(int opt_idx, int opt_flags)
       if (options[opt_idx].indir == PV_SCROLL) {
         win_comp_scroll(curwin);
       } else {
-        long def_val = (long)options[opt_idx].def_val;
+        long def_val = (POINTER_TO_LONG)options[opt_idx].def_val;
         if ((long *)varp == &curwin->w_p_so
             || (long *)varp == &curwin->w_p_siso) {
           // 'scrolloff' and 'sidescrolloff' local values have a
