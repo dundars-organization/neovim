@@ -67,7 +67,7 @@ conpty_t *os_conpty_init(char **in_name, char **out_name, uint16_t width, uint16
                      | PIPE_ACCESS_OUTBOUND | FILE_FLAG_FIRST_PIPE_INSTANCE;
 
   sa.nLength = sizeof(sa);
-  snprintf(buf, sizeof(buf), "\\\\.\\pipe\\nvim-term-in-%d-%d",
+  snprintf(buf, sizeof(buf), "\\\\.\\pipe\\nvim-term-in-%Id-%d",
            os_get_pid(), count);
   *in_name = xstrdup(buf);
   if ((in_read = CreateNamedPipeA(*in_name,
