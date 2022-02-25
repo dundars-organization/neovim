@@ -27,6 +27,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+#ifdef WIN32
+# include <basetsd.h>
+#endif
+
 #include "nvim/ascii.h"
 #include "nvim/buffer.h"
 #include "nvim/charset.h"
@@ -630,7 +634,11 @@ static void set_option_default(int opt_idx, int opt_flags)
       if (options[opt_idx].indir == PV_SCROLL) {
         win_comp_scroll(curwin);
       } else {
+#ifdef WIN32
+        long def_val = PtrToLong(options[opt_idx].def_val);
+#else
         long def_val = (long)options[opt_idx].def_val;
+#endif
         if ((long *)varp == &curwin->w_p_so
             || (long *)varp == &curwin->w_p_siso) {
           // 'scrolloff' and 'sidescrolloff' local values have a
