@@ -28,6 +28,11 @@
 #include <string.h>
 
 #include "strbuf.h"
+#include "nvim/macros.h"
+
+#ifdef WIN32
+# include <basetsd.h>
+#endif
 
 static void die(const char *fmt, ...)
 {
@@ -94,8 +99,11 @@ void strbuf_set_increment(strbuf_t *s, int increment)
 static inline void debug_stats(strbuf_t *s)
 {
     if (s->debug) {
-        fprintf(stderr, "strbuf(%lx) reallocs: %d, length: %d, size: %d\n",
-                (long)s, s->reallocs, s->length, s->size);
+#ifdef WIN32
+        fprintf(stderr, "strbuf(%lx) reallocs: %d, length: %d, size: %d\n", PtrToLong(s), s->reallocs, s->length, s->size);
+#else
+        fprintf(stderr, "strbuf(%lx) reallocs: %d, length: %d, size: %d\n", (long)s, s->reallocs, s->length, s->size);
+#endif
     }
 }
 
