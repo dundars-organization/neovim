@@ -77,6 +77,7 @@
 #include "nvim/window.h"
 #ifdef WIN32
 # include "nvim/os/pty_conpty_win.h"
+# include <Basetsd.h>
 #endif
 #include "nvim/api/private/helpers.h"
 #include "nvim/lua/executor.h"
