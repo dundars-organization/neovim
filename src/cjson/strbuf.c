@@ -29,6 +29,10 @@
 
 #include "strbuf.h"
 
+#ifdef WIN32
+# include <basetsd.h>
+#endif
+
 static void die(const char *fmt, ...)
 {
     va_list arg;
@@ -94,8 +98,11 @@ void strbuf_set_increment(strbuf_t *s, int increment)
 static inline void debug_stats(strbuf_t *s)
 {
     if (s->debug) {
-        fprintf(stderr, "strbuf(%lx) reallocs: %d, length: %d, size: %d\n",
-                (long)s, s->reallocs, s->length, s->size);
+#ifdef WIN32
+        fprintf(stderr, "strbuf(%lx) reallocs: %d, length: %d, size: %d\n", PtrToLong(s), s->reallocs, s->length, s->size);
+#else
+        fprintf(stderr, "strbuf(%lx) reallocs: %d, length: %d, size: %d\n", (long)s, s->reallocs, s->length, s->size);
+#endif
     }
 }
 
@@ -168,8 +175,11 @@ void strbuf_resize(strbuf_t *s, int len)
     newsize = calculate_new_size(s, len);
 
     if (s->debug > 1) {
-        fprintf(stderr, "strbuf(%lx) resize: %d => %d\n",
-                (long)s, s->size, newsize);
+#ifdef WIN32
+        fprintf(stderr, "strbuf(%lx) resize: %d => %d\n", PtrToLong(s), s->size, newsize);
+#else
+        fprintf(stderr, "strbuf(%lx) resize: %d => %d\n", (long)s, s->size, newsize);
+#endif
     }
 
     s->size = newsize;
