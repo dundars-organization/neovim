@@ -277,8 +277,7 @@ int main(void)
 " HAVE_BUILTIN_ADD_OVERFLOW)
 
 if(MSVC)
-  # XXX: /W4 gives too many warnings. #3241
-  add_compile_options(/W3)
+  add_compile_options(/W1 /WX /w44090 /w34047 /w34024)
   add_definitions(-D_CRT_SECURE_NO_WARNINGS -D_CRT_NONSTDC_NO_DEPRECATE)
   add_definitions(-DWIN32)
 else()
