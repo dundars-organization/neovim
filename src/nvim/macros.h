@@ -3,6 +3,10 @@
 
 #include "auto/config.h"
 
+#ifdef WIN32
+# include <basetsd.h>
+#endif
+
 // EXTERN is only defined in main.c. That's where global variables are
 // actually defined and initialized.
 #ifndef EXTERN
@@ -228,5 +232,13 @@
 #endif
 
 #define EMPTY_POS(a) ((a).lnum == 0 && (a).col == 0 && (a).coladd == 0)
+
+/// Define macro to ensure safe pointer truncation on Windows
+/// More info: https://docs.microsoft.com/en-us/windows/win32/winprog64/the-tools#helper-functions
+#ifdef WIN32
+# define POINTER_TO_LONG PtrToLong
+#else
+# define POINTER_TO_LONG long
+#endif
 
 #endif  // NVIM_MACROS_H
