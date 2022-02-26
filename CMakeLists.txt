@@ -274,7 +274,7 @@ int main(void)
 " HAVE_BUILTIN_ADD_OVERFLOW)
 
 if(MSVC)
-  add_compile_options(/W1 /WX /wd4090)
+  add_compile_options(/W1 /WX /wd4090 /permissive-)
   add_definitions(-D_CRT_SECURE_NO_WARNINGS -D_CRT_NONSTDC_NO_DEPRECATE)
   add_definitions(-DWIN32)
 else()
