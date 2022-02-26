@@ -33,6 +33,10 @@
 # include <basetsd.h>
 #endif
 
+#ifndef WIN32
+# define LONG_PTR long
+#endif
+
 static void die(const char *fmt, ...)
 {
     va_list arg;
@@ -98,11 +102,7 @@ void strbuf_set_increment(strbuf_t *s, int increment)
 static inline void debug_stats(strbuf_t *s)
 {
     if (s->debug) {
-#ifdef WIN32
-        fprintf(stderr, "strbuf(%lx) reallocs: %d, length: %d, size: %d\n", PtrToLong(s), s->reallocs, s->length, s->size);
-#else
-        fprintf(stderr, "strbuf(%lx) reallocs: %d, length: %d, size: %d\n", (long)s, s->reallocs, s->length, s->size);
-#endif
+        fprintf(stderr, "strbuf(%lx) reallocs: %d, length: %d, size: %d\n", (LONG_PTR)s, s->reallocs, s->length, s->size);
     }
 }
 
@@ -175,11 +175,7 @@ void strbuf_resize(strbuf_t *s, int len)
     newsize = calculate_new_size(s, len);
 
     if (s->debug > 1) {
-#ifdef WIN32
-        fprintf(stderr, "strbuf(%lx) resize: %d => %d\n", PtrToLong(s), s->size, newsize);
-#else
-        fprintf(stderr, "strbuf(%lx) resize: %d => %d\n", (long)s, s->size, newsize);
-#endif
+        fprintf(stderr, "strbuf(%lx) resize: %d => %d\n", (LONG_PTR)s, s->size, newsize);
     }
 
     s->size = newsize;

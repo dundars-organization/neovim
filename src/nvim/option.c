@@ -88,6 +88,10 @@
 #include "nvim/os/lang.h"
 #include "nvim/quickfix.h"
 
+#ifndef WIN32
+# define LONG_PTR long;
+#endif
+
 /*
  * The options that are local to a window or buffer have "indir" set to one of
  * these values.  Special values:
@@ -634,11 +638,7 @@ static void set_option_default(int opt_idx, int opt_flags)
       if (options[opt_idx].indir == PV_SCROLL) {
         win_comp_scroll(curwin);
       } else {
-#ifdef WIN32
-        long def_val = PtrToLong(options[opt_idx].def_val);
-#else
-        long def_val = (long)options[opt_idx].def_val;
-#endif
+        long def_val = (LONG_PTR)options[opt_idx].def_val;
         if ((long *)varp == &curwin->w_p_so
             || (long *)varp == &curwin->w_p_siso) {
           // 'scrolloff' and 'sidescrolloff' local values have a
