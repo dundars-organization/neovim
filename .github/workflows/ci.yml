@@ -25,6 +25,7 @@ jobs:
     env:
       CC: gcc
     steps:
+      - run: git config --global init.defaultBranch ${{ github.event.repository.default_branch }}
       - uses: actions/checkout@v2
 
       - name: Setup common environment variables
