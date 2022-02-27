@@ -144,26 +144,6 @@ if ($env:USE_LUACOV -eq 1) {
 }
 
 if (-not $NoTests) {
-  # Functional tests
-  # The $LastExitCode from MSBuild can't be trusted
-  $failed = $false
-
-  # Run only this test file:
-  # $env:TEST_FILE = "test\functional\foo.lua"
-  cmake --build . --config $cmakeBuildType --target functionaltest -- $cmakeGeneratorArgs 2>&1 |
-    foreach { $failed = $failed -or
-      $_ -match 'functional tests failed with error'; $_ }
-
-  if ($uploadToCodecov) {
-    if ($env:USE_LUACOV -eq 1) {
-      & $env:DEPS_PREFIX\bin\luacov.bat
-    }
-    bash -l /c/projects/neovim/ci/common/submit_coverage.sh functionaltest
-  }
-  if ($failed) {
-    exit $LastExitCode
-  }
-
   # Old tests
   # Add MSYS to path, required for e.g. `find` used in test scripts.
   # But would break functionaltests, where its `more` would be used then.
