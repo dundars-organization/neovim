@@ -210,29 +210,3 @@ jobs:
 
       - name: Cache dependencies
         run: ./ci/before_cache.sh
-
-  windows:
-    runs-on: windows-2019
-    timeout-minutes: 45
-    if: github.event.pull_request.draft == false
-    env:
-      DEPS_BUILD_DIR: ${{ format('{0}/nvim-deps', github.workspace) }}
-      DEPS_PREFIX: ${{ format('{0}/nvim-deps/usr', github.workspace) }}
-
-    strategy:
-      fail-fast: false
-      matrix:
-        config: [ MINGW_64-gcov, MSVC_64 ]
-    name: windows (${{ matrix.config }})
-    steps:
-      - uses: actions/checkout@v2
-
-      - uses: actions/cache@v2
-        with:
-          path: ${{ env.DEPS_BUILD_DIR }}
-          key: ${{ matrix.config }}-${{ hashFiles('third-party\**') }}
-
-      - name: Run CI
-        run: powershell ci\build.ps1
-        env:
-          CONFIGURATION: ${{ matrix.config }}
