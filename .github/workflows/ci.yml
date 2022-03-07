@@ -222,6 +222,13 @@ jobs:
       - name: Cache dependencies
         run: ./ci/before_cache.sh
 
+      - if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: nvimlog-${{ matrix.runner }}-${{ matrix.flavor }}-${{ matrix.cc }}
+          path: ${{ env.NVIM_LOG_FILE }}
+          retention-days: 1
+
   windows:
     runs-on: windows-2019
     timeout-minutes: 45

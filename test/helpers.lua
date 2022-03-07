@@ -69,7 +69,10 @@ local function dumplog(logfile, fn, ...)
   local status, rv = pcall(fn, ...)
   if status == false then
     logfile = logfile or os.getenv('NVIM_LOG_FILE') or '.nvimlog'
-    local logtail = module.read_nvim_log(logfile)
+    local logtail = ""
+    if not module.isCI("github") then
+      logtail = module.read_nvim_log(logfile)
+    end
     error(string.format('%s\n%s', tostring(rv), logtail))
   end
 end

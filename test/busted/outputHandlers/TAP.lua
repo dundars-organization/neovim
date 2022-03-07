@@ -7,7 +7,9 @@ return function(options)
   local handler = require 'busted.outputHandlers.TAP'(options)
 
   local suiteEnd = function()
-    io.write(global_helpers.read_nvim_log(nil, true))
+    if not global_helpers.isCI("github") then
+      io.write(global_helpers.read_nvim_log(nil, true))
+    end
     return nil, true
   end
   busted.subscribe({ 'suite', 'end' }, suiteEnd)
