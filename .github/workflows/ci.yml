@@ -47,5 +47,5 @@ jobs:
         env:
           HOMEBREW_NO_AUTO_UPDATE: 1
         run: |
-          brew update
+          brew update --quiet
           brew install automake ccache perl cpanminus ninja
