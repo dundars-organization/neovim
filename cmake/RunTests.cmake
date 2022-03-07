@@ -87,13 +87,5 @@ if(NOT res EQUAL 0)
     message(STATUS "Output to stderr:\n${err}")
   endif()
 
-  # Dump the logfile on CI (if not displayed and moved already).
-  if($ENV{CI})
-    if(EXISTS $ENV{NVIM_LOG_FILE} AND NOT EXISTS $ENV{NVIM_LOG_FILE}.displayed)
-      file(READ $ENV{NVIM_LOG_FILE} out)
-      message(STATUS "$NVIM_LOG_FILE: $ENV{NVIM_LOG_FILE}\n${out}")
-    endif()
-  endif()
-
   message(FATAL_ERROR "${TEST_TYPE} tests failed with error: ${res}")
 endif()
