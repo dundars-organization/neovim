@@ -46,4 +46,4 @@ jobs:
         if: matrix.os == 'osx'
         run: |
           brew update --quiet
-          brew install automake ccache perl cpanminus ninja
+          brew install automake ccache cpanminus ninja
