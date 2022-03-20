@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 
+
 #include "lauxlib.h"
 #include "nvim/api/autocmd.h"
 #include "nvim/api/private/defs.h"
