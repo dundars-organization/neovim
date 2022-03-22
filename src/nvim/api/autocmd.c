@@ -19,6 +19,7 @@
 #endif
 
 #define AUCMD_MAX_PATTERNS 256
+// dundargoc the ci master
 
 // Copy string or array of strings into an empty array.
 // Get the event number, unless it is an error. Then goto `goto_name`.
