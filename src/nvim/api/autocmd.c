@@ -829,3 +829,4 @@ static bool unpack_string_or_array(Array *array, Object *v, char *k, Error *err)
 }
 
 #undef GET_ONE_EVENT
+
