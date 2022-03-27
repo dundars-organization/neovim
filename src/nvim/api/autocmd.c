@@ -690,7 +690,7 @@ void nvim_del_augroup_by_name(String name)
 ///             id to match against. |autocmd-groups|.
 ///             - pattern (string|array) optional: defaults to "*" |autocmd-pattern|. Cannot be used
 ///             with {buffer}.
-///             - buffer (integer) optional: buffer number |autocmd-buflocal|. Cannot be used with
+///             - buffer (binteger) optional: buffer number |autocmd-buflocal|. Cannot be used with
 ///             {pattern}.
 ///             - modeline (bool) optional: defaults to true. Process the
 ///             modeline after the autocommands |<nomodeline>|.
@@ -829,3 +829,4 @@ static bool unpack_string_or_array(Array *array, Object *v, char *k, Error *err)
 }
 
 #undef GET_ONE_EVENT
+
