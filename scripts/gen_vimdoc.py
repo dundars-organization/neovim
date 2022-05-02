@@ -53,7 +53,7 @@ import logging
 from xml.dom import minidom
 
 MIN_PYTHON_VERSION = (3, 6)
-MIN_DOXYGEN_VERSION = (1, 9, 0)
+MIN_DOXYGEN_VERSION = (1, 10, 0)
 
 if sys.version_info < MIN_PYTHON_VERSION:
     print("requires Python {}.{}+".format(*MIN_PYTHON_VERSION))
