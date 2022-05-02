@@ -114,6 +114,7 @@ Integer nvim_buf_line_count(Buffer buffer, Error *err)
 ///               - buffer handle
 ///               - b:changedtick
 ///               - start row of the changed text (zero-indexed)
+///               - start row of the changed text (zero-indexed)
 ///               - start column of the changed text
 ///               - byte offset of the changed text (from the start of
 ///                   the buffer)
