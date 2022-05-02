@@ -109,6 +109,7 @@ Integer nvim_buf_line_count(Buffer buffer, Error *err)
 ///               This callback receives more granular information about the
 ///               change compared to on_lines.
 ///               Return `true` to detach.
+///               Return `true` to detach.
 ///               Args:
 ///               - the string "bytes"
 ///               - buffer handle
