@@ -135,6 +135,7 @@ Integer nvim_buf_line_count(Buffer buffer, Error *err)
 ///                          content should be considered changed. Args:
 ///               - the string "reload"
 ///               - buffer handle
+///               - buffer handle
 ///             - utf_sizes: include UTF-32 and UTF-16 size of the replaced
 ///               region, as args to `on_lines`.
 ///             - preview: also attach to command preview (i.e. 'inccommand')
