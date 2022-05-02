@@ -59,7 +59,8 @@ if sys.version_info < MIN_PYTHON_VERSION:
     print("requires Python {}.{}+".format(*MIN_PYTHON_VERSION))
     sys.exit(1)
 
-doxygen_version_string = subprocess.check_output(["doxygen", "-v"], universal_newlines=True)
+doxygen_version_string = subprocess.check_output(["doxygen", "-v"],
+        universal_newlines=True).split()[0]
 print("Doxygen version is:")
 print(doxygen_version_string)
 
