@@ -19,4 +19,5 @@ jobs:
           neovim: true
       - run: wget https://raw.githubusercontent.com/neovim/neovim/master/scripts/lintcommit.lua
       - run: nvim --clean -es +"cd pr_nvim" +"lua dofile('../lintcommit.lua').main({trace=true})"
-      - run: echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
+      - name: Adding markdown
+        run: echo ‘### Hello world! :rocket:’ >> $GITHUB_STEP_SUMMARY
