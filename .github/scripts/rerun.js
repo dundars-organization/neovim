@@ -5,11 +5,14 @@ module.exports = async ({ github, context }) => {
     pull_number: context.issue.number,
   });
 
+  const data = pr_data.data.head
+
   const workflow_runs = await github.rest.actions.listWorkflowRunsForRepo({
     owner: context.repo.owner,
     repo: context.repo.repo,
   });
 
   //console.log(workflow_runs);
-  console.log(pr_data);
+  //console.log(pr_data);
+  console.log(data);
 };
