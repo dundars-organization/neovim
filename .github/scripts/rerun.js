@@ -10,6 +10,6 @@ module.exports = async ({ github, context }) => {
     repo: context.repo.repo,
   });
 
-  console.log(workflow_runs);
-  //const labels = pr_data.data.labels.map(e => e.name)
+  //console.log(workflow_runs);
+  console.log(pr_data);
 };
