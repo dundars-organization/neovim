@@ -1,0 +1,21 @@
+name: Rerun failed jobs
+
+on:
+  issue_comment:
+    types: [created]
+jobs:
+  rerun:
+    permissions:
+      contents: write
+      pull-requests: write
+    name: Rerun failed jobs
+    runs-on: ubuntu-latest
+    if: github.event.issue.pull_request && contains(github.event.comment.body, '/rerun')
+    steps:
+      - name: Setup git config
+        run: |
+          git config --global user.name 'marvim'
+          git config --global user.email 'marvim@users.noreply.github.com'
+
+      - name: Rerun failed job
+        run: gh run rerun ${{github.run_id}} --failed
