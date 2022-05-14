@@ -10,9 +10,10 @@ module.exports = async ({ github, context }) => {
   const workflow_runs = await github.rest.actions.listWorkflowRunsForRepo({
     owner: context.repo.owner,
     repo: context.repo.repo,
+    branch: context.repo.repo,
   });
 
   //console.log(workflow_runs);
   //console.log(pr_data);
-  console.log(data);
+  console.log(context);
 };
