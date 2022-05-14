@@ -1,0 +1,19 @@
+name: Rerun failed jobs
+
+on:
+  issue_comment:
+    types: [created]
+jobs:
+  rerun:
+    permissions:
+      contents: write
+      pull-requests: write
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_REPO: ${{ github.repository }}
+    name: Rerun failed jobs
+    runs-on: ubuntu-latest
+    if: github.event.issue.pull_request && contains(github.event.comment.body, '/rerun')
+    steps:
+      - name: Rerun failed job
+        run: gh run rerun ${{github.run_id}} --failed
