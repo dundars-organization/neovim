@@ -1,7 +1,7 @@
 local M = {}
 
 function M.report_start(msg)
-  vim.fn['health#report_start'](msg)
+    vim.fn['health#report_start'](msg)
 end
 
 function M.report_info(msg)
