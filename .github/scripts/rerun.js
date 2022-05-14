@@ -15,5 +15,5 @@ module.exports = async ({ github, context }) => {
 
   //console.log(workflow_runs);
   //console.log(pr_data);
-  console.log(context.issue.pull_request);
+  console.log(context.issue);
 };
