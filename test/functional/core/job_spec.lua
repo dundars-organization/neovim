@@ -225,6 +225,9 @@ describe('jobs', function()
   end)
 
   it('error on non-executable `cwd`', function()
+    if helpers.isCI("cirrus") then
+      pending('Fails on FreeBSD CI', function() end)
+    end
     if iswin() then return end  -- N/A for Windows
 
     local dir = 'Xtest_not_executable_dir'

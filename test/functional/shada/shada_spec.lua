@@ -239,6 +239,9 @@ describe('ShaDa support code', function()
   end)
 
   it('does not crash when ShaDa file directory is not writable', function()
+    if helpers.isCI("cirrus") then
+      pending('Fails on FreeBSD CI', function() end)
+    end
     if helpers.pending_win32(pending) then return end
 
     funcs.mkdir(dirname, '', 0)

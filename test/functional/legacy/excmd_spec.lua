@@ -329,6 +329,9 @@ describe(':confirm command dialog', function()
 
   -- oldtest: Test_confirm_write_ro()
   it('works when writing a read-only file', function()
+    if helpers.isCI("cirrus") then
+      pending('Fails on FreeBSD CI', function() end)
+    end
     write_file('Xconfirm_write_ro', 'foo\n')
     start_new()
     screen:try_resize(75, 8)

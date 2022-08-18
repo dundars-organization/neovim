@@ -52,6 +52,9 @@ describe(':write', function()
   end)
 
   it('&backupcopy=no replaces symlink with new file', function()
+    if helpers.isCI("cirrus") then
+      pending('Fails on FreeBSD CI', function() end)
+    end
     command('set backupcopy=no')
     write_file('test_bkc_file.txt', 'content0')
     if iswin() then
@@ -76,6 +79,9 @@ describe(':write', function()
     if iswin() or eval("executable('mkfifo')") == 0 then
       pending('missing "mkfifo" command')
     end
+    if helpers.isCI("cirrus") then
+      pending('Fails on FreeBSD CI', function() end)
+    end
 
     local text = "some fifo text from write_spec"
     assert(os.execute("mkfifo test_fifo"))
@@ -91,6 +97,9 @@ describe(':write', function()
   end)
 
   it('errors out correctly', function()
+    if helpers.isCI("cirrus") then
+      pending('Fails on FreeBSD CI', function() end)
+    end
     command('let $HOME=""')
     eq(funcs.fnamemodify('.', ':p:h'), funcs.fnamemodify('.', ':p:h:~'))
     -- Message from check_overwrite

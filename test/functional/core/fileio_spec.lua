@@ -83,6 +83,9 @@ describe('fileio', function()
   end)
 
   it('backup #9709', function()
+    if helpers.isCI("cirrus") then
+      pending('Fails on FreeBSD CI', function() end)
+    end
     clear({ args={ '-i', 'Xtest_startup_shada',
                    '--cmd', 'set directory=Xtest_startup_swapdir' } })
 
@@ -102,6 +105,9 @@ describe('fileio', function()
   end)
 
   it('backup with full path #11214', function()
+    if helpers.isCI("cirrus") then
+      pending('Fails on FreeBSD CI', function() end)
+    end
     clear()
     mkdir('Xtest_backupdir')
     command('set backup')
