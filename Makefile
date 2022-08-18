@@ -175,3 +175,4 @@ $(DEPS_BUILD_DIR)/%: phony_force
 endif
 
 .PHONY: test lintlua lintpy lintsh functionaltest unittest lint lintc clean distclean nvim libnvim cmake deps install appimage checkprefix lintcommit formatc formatlua format
+
