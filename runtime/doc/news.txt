@@ -13,6 +13,8 @@ BREAKING CHANGES                                                *news-breaking*
 
 The following changes may require adaptations in user config or plugins.
 
+• Nvim has been renamed to Uwu
+
 • Cscope support is now removed (see |cscope| and |nvim-features-removed|):
   - Commands removed:
     - `:cscope`
