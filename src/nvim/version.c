@@ -3,7 +3,7 @@
 
 /// @file version.c
 ///
-/// Nvim was forked from Vim 7.4.160.
+/// Uwu was forked from Vim 7.4.160.
 /// Vim originated from Stevie version 3.6 (Fish disk 217) by GRWalter (Fred).
 
 #include <assert.h>
@@ -36,20 +36,20 @@
 #include "nvim/version.h"
 #include "nvim/vim.h"
 
-// for ":version", ":intro", and "nvim --version"
+// for ":version", ":intro", and "uwu --version"
 #ifndef NVIM_VERSION_MEDIUM
 # define NVIM_VERSION_MEDIUM "v" STR(NVIM_VERSION_MAJOR) \
   "." STR(NVIM_VERSION_MINOR) "." STR(NVIM_VERSION_PATCH) \
   NVIM_VERSION_PRERELEASE
 #endif
-#define NVIM_VERSION_LONG "NVIM " NVIM_VERSION_MEDIUM  // NOLINT(bugprone-suspicious-missing-comma)
+#define NVIM_VERSION_LONG "UWU " NVIM_VERSION_MEDIUM  // NOLINT(bugprone-suspicious-missing-comma)
 
 char *Version = VIM_VERSION_SHORT;
 char *longVersion = NVIM_VERSION_LONG;
-char *version_buildtype = "Build type: " NVIM_VERSION_BUILD_TYPE;
+char *version_buildtype = "Uwu type: " NVIM_VERSION_BUILD_TYPE;
 // Reproducible builds: omit compile info in Release builds. #15424
 #ifndef NDEBUG
-char *version_cflags = "Compilation: " NVIM_VERSION_CFLAGS;
+char *version_cflags = "Uwu: " NVIM_VERSION_CFLAGS;
 #endif
 
 #ifdef INCLUDE_GENERATED_DECLARATIONS
@@ -2507,11 +2507,11 @@ static const int included_patches[] = {
 };
 // clang-format on
 
-/// Compares a version string to the current Nvim version.
+/// Compares a version string to the current Uwu version.
 ///
 /// @param version Version string like "1.3.42"
 ///
-/// @return true if Nvim is at or above the version.
+/// @return true if Uwu is at or above the version.
 bool has_nvim_version(const char *const version_str)
   FUNC_ATTR_PURE FUNC_ATTR_WARN_UNUSED_RESULT FUNC_ATTR_NONNULL_ALL
 {
@@ -2802,11 +2802,11 @@ void intro_message(int colon)
   static char *(lines[]) = {
     N_(NVIM_VERSION_LONG),
     "",
-    N_("Nvim is open source and freely distributable"),
-    N_("https://neovim.io/#chat"),
+    N_("Uwu is open source and freely distributable"),
+    N_("https://uwu.io/#chat"),
     "",
-    N_("type  :help nvim<Enter>       if you are new! "),
-    N_("type  :checkhealth<Enter>     to optimize Nvim"),
+    N_("type  :help uwu<Enter>       if you are new! "),
+    N_("type  :checkhealth<Enter>     to optimize Uwu"),
     N_("type  :q<Enter>               to exit         "),
     N_("type  :help<Enter>            for help        "),
     "",
