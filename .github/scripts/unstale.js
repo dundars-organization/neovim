@@ -1,3 +1,4 @@
 module.exports = async ({github, context}) => {
-    console.log(context.actor)
+  const commenter=context.actor
+  console.log(context)
 }
