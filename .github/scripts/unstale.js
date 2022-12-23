@@ -7,6 +7,15 @@ module.exports = async ({github, context}) => {
   });
   const author = issue.data.user.login
 
+  if(author === commenter){
+    octokit.rest.issues.removeLabel({
+      owner: context.repo.owner,
+      repo: context.repo.repo,
+      issue_number: context.issue.number,
+      name: 'needs:response',
+    });
+  }
+
   console.log(author)
   console.log(commenter)
 }
