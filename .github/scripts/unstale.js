@@ -7,4 +7,5 @@ module.exports = async ({github, context}) => {
   });
 
   console.log(issue)
+  console.log(commenter)
 }
