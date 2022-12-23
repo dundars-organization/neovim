@@ -5,7 +5,8 @@ module.exports = async ({github, context}) => {
     repo: context.repo.repo,
     issue_number: context.issue.number,
   });
+  const author = issue.data.user.login
 
-  console.log(issue.data)
+  console.log(author)
   console.log(commenter)
 }
