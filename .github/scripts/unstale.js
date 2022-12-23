@@ -8,17 +8,12 @@ module.exports = async ({github, context}) => {
   const author = issue.data.user.login
   const labels = issue.data.labels.map(e => e.name)
 
-  if(author === commenter){
-    // github.rest.issues.removeLabel({
-    //   owner: context.repo.owner,
-    //   repo: context.repo.repo,
-    //   issue_number: context.issue.number,
-    //   name: 'needs:response',
-    // });
+  if(author === commenter && labels.includes('needs:response')){
+    github.rest.issues.removeLabel({
+      owner: context.repo.owner,
+      repo: context.repo.repo,
+      issue_number: context.issue.number,
+      name: 'needs:response',
+    });
   }
-
-  // console.log(author)
-  // console.log(commenter)
-  console.log(labels.includes('invalid'))
-  console.log(labels.includes('needs:response'))
 }
