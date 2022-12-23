@@ -16,6 +16,7 @@ module.exports = async ({github, context}) => {
     });
   }
 
-  console.log(author)
-  console.log(commenter)
+  // console.log(author)
+  // console.log(commenter)
+  console.log(issue)
 }
