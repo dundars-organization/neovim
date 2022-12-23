@@ -19,5 +19,6 @@ module.exports = async ({github, context}) => {
 
   // console.log(author)
   // console.log(commenter)
-  console.log(labels)
+  console.log(labels.includes('invalid'))
+  console.log(labels.includes('needs:response'))
 }
