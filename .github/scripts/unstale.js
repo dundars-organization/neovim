@@ -6,7 +6,7 @@ module.exports = async ({github, context}) => {
     issue_number: context.issue.number,
   });
   const author = issue.data.user.login
-  const labels = issue.data.labels
+  const labels = issue.data.labels.map(e => e.name)
 
   if(author === commenter){
     // github.rest.issues.removeLabel({
