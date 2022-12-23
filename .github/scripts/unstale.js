@@ -6,6 +6,6 @@ module.exports = async ({github, context}) => {
     issue_number: context.issue.number,
   });
 
-  console.log(issue)
+  console.log(issue.data)
   console.log(commenter)
 }
