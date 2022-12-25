@@ -7,8 +7,8 @@
 //   :mkview
 //   :mksession
 
-#include <assert.h>
 #include <inttypes.h>
+#include <assert.h>
 #include <limits.h>
 #include <stdbool.h>
 #include <stdio.h>
