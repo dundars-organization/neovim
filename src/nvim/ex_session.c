@@ -1137,6 +1137,7 @@ int put_eol(FILE *fd)
 }
 
 /// TODO(justinmk): remove this, not needed after 5ba3cecb68cd.
+/// wrong
 int put_line(FILE *fd, char *s)
 {
   if (fprintf(fd, "%s\n", s) < 0) {
