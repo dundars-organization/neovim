@@ -174,3 +174,4 @@ $(DEPS_BUILD_DIR)/%: phony_force
 endif
 
 .PHONY: test clean distclean nvim libnvim cmake deps install appimage checkprefix benchmark uninstall $(FORMAT) $(LINT) $(TEST)
+
