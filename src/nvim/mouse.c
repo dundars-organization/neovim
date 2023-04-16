@@ -1803,3 +1803,4 @@ int mouse_check_fold(void)
 
   return 0;
 }
+
