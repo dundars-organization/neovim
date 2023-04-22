@@ -12,5 +12,3 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Create backport PRs
-        uses: korthout/backport-action@v1
