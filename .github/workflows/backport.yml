@@ -2,6 +2,7 @@ name: Backport
 on:
   pull_request_target:
     types: [closed, labeled]
+
 jobs:
   backport:
     permissions:
@@ -12,3 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            const script = require('./.github/scripts/backport.js')
+            await script({github, context})
