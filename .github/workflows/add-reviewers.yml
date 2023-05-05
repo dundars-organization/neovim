@@ -17,3 +17,4 @@ jobs:
           script: |
             const script = require('./.github/scripts/reviews.js')
             await script({github, context})
+
