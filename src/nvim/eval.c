@@ -9230,3 +9230,4 @@ char *typval_tostring(typval_T *arg, bool quotes)
   }
   return encode_tv2string(arg, NULL);
 }
+
