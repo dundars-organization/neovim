@@ -10,6 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.draft == false
     steps:
+      - run: |
+          echo ${{ github.event.pull_request.head.sha }}
+          echo ${{ github.base_ref }}
+          echo ${{ github.head_ref }}
+          echo ${{ github.ref }}
+
+      - if: ${{ github.base_ref == 'release.0.10' }}
+        run: exit 1
+
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
