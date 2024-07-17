@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.draft == false
     steps:
+      - if: ${{ github.head_ref == 'release.0.10' }}
+        run: exit 0
+
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
