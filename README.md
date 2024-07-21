@@ -122,3 +122,4 @@ Apache 2.0 license, except for contributions copied from Vim (identified by the
 [Homebrew]: https://formulae.brew.sh/formula/neovim
 
 <!-- vim: set tw=80: -->
+
