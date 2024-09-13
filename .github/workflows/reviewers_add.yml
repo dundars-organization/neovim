@@ -17,3 +17,6 @@ jobs:
           script: |
             const script = require('./.github/scripts/reviewers_add.js')
             await script({github, context})
+      - run: echo ${{ github.actor }}
+      - run: echo ${{ endsWith(github.actor, '[bot]') }}
+      - run: echo ${{ github.id }}
