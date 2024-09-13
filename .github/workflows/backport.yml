@@ -26,6 +26,10 @@ jobs:
           pull_title: "${pull_title}"
           label_pattern: "^ci:backport ([^ ]+)$"
           github_token: ${{ steps.app-token.outputs.token }}
+          experimental: >
+            {
+              conflict_resolution: draft_commit_conflicts
+            }
 
       - name: Enable automerge
         env:
