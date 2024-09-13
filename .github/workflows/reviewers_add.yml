@@ -17,3 +17,4 @@ jobs:
           script: |
             const script = require('./.github/scripts/reviewers_add.js')
             await script({github, context})
+      - run: ${{ github.actor }}
